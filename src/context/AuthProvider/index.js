@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await LoginRequest(email, password);
 
-      const payload = { token: response.token, email: email, name: response.user.name };
+      const payload = { token: response.token, id: response.user.id, email: email, name: response.user.name };
 
       setUser(payload);
       setUserLocalStorage(payload);
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     if (response && response.error)
       return response
 
-    const payload = { token: response.token, email: email, name: response.user.name }
+    const payload = { token: response.token, id: response.user.id, email: email, name: response.user.name }
 
     setUser(payload)
     setUserLocalStorage(payload)

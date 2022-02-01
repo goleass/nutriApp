@@ -50,7 +50,7 @@ function Signup() {
         return
       }
 
-      const authenticated = await auth.authenticate(email, password)
+      const authenticated = await auth.registrate(name, email, password)
 
       setAuthenticated(authenticated)
 

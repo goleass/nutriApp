@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 
-import { useAuth } from '../../context/AuthProvider/useAuth'
-
 import Image from '../../images/avatar-01.jpg';
 
 function SettingsContent() {
 
-  const auth = useAuth()
-
-  const [name, setName] = useState(auth.name)
-  const [email, setEmail] = useState(auth.email)
+  const [sync, setSync] = useState(false);
 
   return (
     <div className="flex-grow">
@@ -23,7 +18,7 @@ function SettingsContent() {
               <img className="w-120 h-120 rounded-full" src={Image} width="120" height="120" alt="User upload" />
             </div>
             <div className="">
-              <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Atualizar foto de perfil</button>
+              <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Atualizar foto</button>
             </div>
           </div>
         </section>
@@ -34,15 +29,11 @@ function SettingsContent() {
           <div className="">
             <div className="mt-3">
               <label className="block text-sm font-medium mb-1" htmlFor="name">Nome completo</label>
-              <input id="name" className="form-input w-full" type="text" value={name}/>
+              <input id="name" className="form-input w-full" type="text" />
             </div>
-            <div className="mt-3">
-              <label className="block text-sm font-medium mb-1" htmlFor="name" >Email</label>
-              <input id="email" className="form-input w-full bg-indigo-100" type="email" value={email} disabled/>
-            </div>
-            <div className="mt-3">
-              <label className="block text-sm font-medium mb-1" htmlFor="name">CRN</label>
-              <input id="CRN" className="form-input w-full" type="text" />
+            <div className="mt-3q">
+              <label className="block text-sm font-medium mb-1" htmlFor="name">Email</label>
+              <input id="name" className="form-input w-full" type="text" />
             </div>
             {/* <div className="sm:w-1/3">
               <label className="block text-sm font-medium mb-1" htmlFor="business-id">Business ID</label>
@@ -55,7 +46,7 @@ function SettingsContent() {
           </div>
         </section>
         {/* Email */}
-        {/* <section>
+        <section>
           <h2 className="text-xl text-gray-800 font-bold mb-1">Email</h2>
           <div className="text-sm">Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia.</div>
           <div className="flex flex-wrap mt-5">
@@ -65,17 +56,17 @@ function SettingsContent() {
             </div>
             <button className="btn border-gray-200 hover:border-gray-300 shadow-sm text-indigo-500">Change</button>
           </div>
-        </section> */}
+        </section>
         {/* Password */}
-        {/* <section>
+        <section>
           <h2 className="text-xl text-gray-800 font-bold mb-1">Password</h2>
           <div className="text-sm">You can set a permanent password if you don't want to use temporary login codes.</div>
           <div className="mt-5">
             <button className="btn border-gray-200 shadow-sm text-indigo-500">Set New Password</button>
           </div>
-        </section> */}
+        </section>
         {/* Smart Sync */}
-        {/* <section>
+        <section>
           <h2 className="text-xl text-gray-800 font-bold mb-1">Smart Sync update for Mac</h2>
           <div className="text-sm">With this update, online-only files will no longer appear to take up hard drive space.</div>
           <div className="flex items-center mt-5">
@@ -88,14 +79,14 @@ function SettingsContent() {
             </div>
             <div className="text-sm text-gray-400 italic ml-2">{sync ? 'On' : 'Off'}</div>
           </div>
-        </section> */}
+        </section>
       </div>
       {/* Panel footer */}
       <footer>
         <div className="flex flex-col px-6 py-5 border-t border-gray-200">
           <div className="flex self-end">
-            <button className="btn border-gray-200 hover:border-gray-300 text-gray-600">Cancelar</button>
-            <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Salvar alterações</button>
+            <button className="btn border-gray-200 hover:border-gray-300 text-gray-600">Cancel</button>
+            <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Save Changes</button>
           </div>
         </div>
       </footer>

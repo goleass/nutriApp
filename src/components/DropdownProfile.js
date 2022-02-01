@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Transition from '../utils/Transition';
 
 import UserAvatar from '../images/avatar-01.jpg';
@@ -11,7 +11,6 @@ function DropdownProfile({
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const navigate = useNavigate();
   const auth = useAuth()
   const trigger = useRef(null);
   const dropdown = useRef(null);

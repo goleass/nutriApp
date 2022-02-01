@@ -18,7 +18,7 @@ export function getUserLocalStorage() {
 
 export async function RegisterRequest(name, email, password) {
   try {
-    const request = await Api.post('auth/register', { name, email, password });
+    const request = await Api.post('auth-professional/register', { name, email, password });
 
     return request.data
   } catch (error) {

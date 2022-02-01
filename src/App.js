@@ -10,6 +10,8 @@ import './css/style.scss';
 import { focusHandling } from 'cruip-js-toolkit';
 
 // Import pages
+import Patients from './pages/Patient/Patients';
+import Patient from './pages/Patient/Patient';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Signin from './pages/Signin';
@@ -35,7 +37,11 @@ function App() {
         <Routes>
           <Route path="/" element={<ProtectedLayout children={<Dashboard />} />} />
 
-          <Route path="/patients" element={<ProtectedLayout children={<Dashboard />} />} />
+          <Route path="/patients" element={<ProtectedLayout children={<Patients />} />} />
+
+          <Route path="/patients/edit/:id" element={<ProtectedLayout children={<Patient />} />} />
+
+          <Route path="/patients/edit/:id/profile" element={<ProtectedLayout children={<Patient />} />} />
 
           <Route path="/profile" element={<Profile />} />
 
