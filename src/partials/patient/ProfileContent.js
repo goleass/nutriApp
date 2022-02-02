@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Image from '../../images/avatar-01.jpg';
 
-function SettingsContent() {
+function ProfileContent() {
 
   const [sync, setSync] = useState(false);
 
@@ -88,4 +88,4 @@ function SettingsContent() {
   );
 }
 
-export default SettingsContent;
+export default ProfileContent;

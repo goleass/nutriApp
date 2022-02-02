@@ -10,12 +10,14 @@ import './css/style.scss';
 import { focusHandling } from 'cruip-js-toolkit';
 
 // Import pages
-import Patients from './pages/Patient/Patients';
-import Patient from './pages/Patient/Patient';
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
+import Dashboard from './pages/Dashboard';
+import Patients from './pages/Patient/Patients';
+import Patient from './pages/Patient/Patient';
+import PatientHome from './pages/Patient/PatientHome';
+import Profile from './pages/Profile';
+import Anamnesis from './pages/Patient/Anamnesis';
 
 import { AuthProvider } from './context/AuthProvider';
 import { ProtectedLayout } from './components/ProtectedLayout'
@@ -39,7 +41,9 @@ function App() {
 
           <Route path="/patients" element={<ProtectedLayout children={<Patients />} />} />
 
-          <Route path="/patients/edit/:id" element={<ProtectedLayout children={<Patient />} />} />
+          <Route path="/patients/edit/:id" element={<ProtectedLayout children={<PatientHome />} />} />
+
+          <Route path="/patients/edit/:id/anamnesis" element={<ProtectedLayout children={<Anamnesis />} />} />
 
           <Route path="/patients/edit/:id/profile" element={<ProtectedLayout children={<Patient />} />} />
 
