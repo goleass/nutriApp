@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'
 
 import { Api } from '../../services/api';
@@ -9,30 +9,19 @@ import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 import PatientSidebar from '../../partials/patient/PatientProfileSidebar';
 import ProfileContent from '../../partials/patient/ProfileContent';
+import { useAuth } from '../../context/AuthProvider/useAuth';
+import { useQuery } from 'react-query';
 
-function Settings(props) {
-
-  const [patient, setPatient] = useState({})
+function PatientProfile(props) {
+  const auth = useAuth()
 
   const { id } = useParams()
 
-  const getPatient = async () => {
-    try {
-      const { data } = await Api.get(`/patient/${id}`)
+  const { data: patient } = useQuery(`patient/${id}`, async () => {
+    const response = await Api.get(`patient/${id}`)
 
-      setPatient(data.patient)
-    } catch (error) {
-      console.log("Erro ao pesquisar paciente.")
-    }
-  }
-
-  useEffect(() => {
-    try {
-      getPatient()
-    } catch (error) {
-      console.log("Erro ao carregar informações do paciente.")
-    }
-  }, [])
+    return response.data.patient
+  })
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -80,4 +69,4 @@ function Settings(props) {
   );
 }
 
-export default Settings;
+export default PatientProfile;

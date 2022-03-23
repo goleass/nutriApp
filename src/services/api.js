@@ -2,19 +2,14 @@ import axios from "axios";
 import { getUserLocalStorage, setUserLocalStorage } from "../context/AuthProvider/util";
 
 export const Api = axios.create({
-  // baseURL: "https://bico-app-api.herokuapp.com/"
   baseURL: "http://localhost:3001/"
 })
-
-// export const ApiLocate = axios.create({
-//   baseURL: "https://servicodados.ibge.gov.br/api/v1/localidades/"
-// })
 
 Api.interceptors.request.use(
   (config) => {
     const user = getUserLocalStorage()
 
-    const token = `Barer ${user?.token}`
+    const token = `Bearer ${user?.token}`
 
     config.headers.Authorization = token
 
@@ -26,8 +21,11 @@ Api.interceptors.request.use(
 Api.interceptors.response.use(
   (data) => { return data },
   (error) => {
-    if(error.response.status === 401){
+    if(error && error.response && error.response.status === 401){
       setUserLocalStorage(null)
+    }
+    else if (error && error.message === 'Network Error'){
+      alert('Problema interno. Tente novamente mais tarde!')
     }
     return Promise.reject(error)
   }

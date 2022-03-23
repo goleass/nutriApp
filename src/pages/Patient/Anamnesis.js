@@ -8,30 +8,16 @@ import Image from '../../images/avatar-01.jpg';
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 import AnamnesisContent from '../../partials/patient/AnamnesisContent';
+import { useQuery } from 'react-query';
 
 function Anamnesis(props) {
+  const { id, anamnesisId } = useParams()
 
-  const [patient, setPatient] = useState({})
+  const { data: patient } = useQuery(`patient/${id}`, async () => {
+    const response = await Api.get(`patient/${id}`)
 
-  const { id } = useParams()
-
-  const getPatient = async () => {
-    try {
-      const { data } = await Api.get(`/patient/${id}`)
-
-      setPatient(data.patient)
-    } catch (error) {
-      console.log("Erro ao pesquisar paciente.")
-    }
-  }
-
-  useEffect(() => {
-    try {
-      getPatient()
-    } catch (error) {
-      console.log("Erro ao carregar informações do paciente.")
-    }
-  }, [])
+    return response.data.patient
+  })
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -65,7 +51,7 @@ function Anamnesis(props) {
             {/* Content */}
             <div className="bg-white shadow-lg rounded-sm mb-8">
               <div className="flex flex-col md:flex-row md:-mr-px">
-                <AnamnesisContent />
+                <AnamnesisContent id={id} anamnesis={patient.Anamneses.filter(a => a.id === anamnesisId)[0]} />
               </div>
             </div>
 

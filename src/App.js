@@ -14,7 +14,7 @@ import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Patients from './pages/Patient/Patients';
-import Patient from './pages/Patient/Patient';
+import PatientProfile from './pages/Patient/PatientProfile';
 import PatientHome from './pages/Patient/PatientHome';
 import Profile from './pages/Profile';
 import Anamnesis from './pages/Patient/Anamnesis';
@@ -45,9 +45,11 @@ function App() {
 
           <Route path="/patients/edit/:id/anamnesis" element={<ProtectedLayout children={<Anamnesis />} />} />
 
-          <Route path="/patients/edit/:id/profile" element={<ProtectedLayout children={<Patient />} />} />
+          <Route path="/patients/edit/:id/anamnesis/:anamnesisId" element={<ProtectedLayout children={<Anamnesis />} />} />
 
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/patients/edit/:id/profile" element={<ProtectedLayout children={<PatientProfile />} />} />
+
+          <Route path="/profile" element={<ProtectedLayout children={<Profile />} />} />
 
           <Route path="/signin" element={<Signin />} />
 

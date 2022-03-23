@@ -22,7 +22,7 @@ export async function RegisterRequest(name, email, password) {
 
     return request.data
   } catch (error) {
-    return null;
+    throw error
   }
 }
 
@@ -32,6 +32,6 @@ export async function LoginRequest(email, password) {
 
     return request.data
   } catch (error) {
-    return null;
+    throw error
   }
 }

@@ -18,12 +18,12 @@ function PatientsTable({ patients }) {
             </thead>
             {/* Table body */}
             <tbody className="text-sm divide-y divide-gray-200">
-              {(!patients || patients.length === 0) && <tr class="border-b border-gray-200 bg-gray-100">
+              {(!patients || patients.length === 0) && <tr className="border-b border-gray-200 bg-gray-100">
                 <td className="text-gray-500 text-lg text-center px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                   Nenhum paciente ainda
                 </td>
               </tr>}
-              {
+              {patients &&
                 patients.map(patient => {
                   return (
                     <PatientTableItem

@@ -75,7 +75,7 @@ function Sidebar({
           </button>
           {/* Logo */}
           {sidebarExpanded && <span className="font-bold">NutriApp</span>}
-          <NavLink exact to="/" className="block">
+          <NavLink to="/" className="block">
             <svg width="32" height="32" viewBox="0 0 32 32">
               <defs>
                 <linearGradient x1="28.538%" y1="20.229%" x2="100%" y2="108.156%" id="logo-a">
@@ -106,7 +106,7 @@ function Sidebar({
             <ul className="mt-3">
               {/* Dashboard */}
               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname === '/' && 'bg-gray-900'}`}>
-                <NavLink exact to="/" className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname === '/' && 'hover:text-gray-200'}`}>
+                <NavLink to="/" className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname === '/' && 'hover:text-gray-200'}`}>
                   <div className="flex items-center">
                     <svg className="flex-shrink-0 h-6 w-6" viewBox="0 0 24 24">
                       <path className={`fill-current text-gray-400 ${pathname === '/' && 'text-indigo-500'}`} d="M23.633,10.226l-11-9a1,1,0,0,0-1.266,0L5,6.435V4.5A.5.5,0,0,0,4.5,4h-1a.5.5,0,0,0-.5.5V8.071L.367,10.226a1,1,0,0,0,1.266,1.548L3,10.656V22a1,1,0,0,0,1,1h6V18.5a.5.5,0,0,1,.5-.5h3a.5.5,0,0,1,.5.5V23h6a1,1,0,0,0,1-1V10.656l1.367,1.118a1,1,0,0,0,1.29-1.529Z" fill="#212121"></path>
@@ -118,7 +118,7 @@ function Sidebar({
               </li>
               {/* Patients */}
               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname === '/patients' && 'bg-gray-900'}`}>
-                <NavLink exact to="/patients" className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname === '/patients' && 'hover:text-gray-200'}`}>
+                <NavLink to="/patients" className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname === '/patients' && 'hover:text-gray-200'}`}>
                   <div className="flex items-center">
                     <svg className="flex-shrink-0 h-6 w-6" viewBox="0 0 24 24">
                       <path className={`fill-current text-gray-400 ${pathname.includes('patients') && '!text-indigo-500'}`} d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z" />

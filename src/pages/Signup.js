@@ -57,7 +57,6 @@ function Signup() {
       if(authenticated) navigate('/')
 
     } catch (error) {
-      console.log(error.status)
       console.error('Email ou senha inválidos.')
     }
   }

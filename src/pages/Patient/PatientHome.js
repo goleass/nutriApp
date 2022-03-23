@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'
 
 import { Api } from '../../services/api';
@@ -9,35 +9,24 @@ import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 import PatientSidebar from '../../partials/patient/PatientProfileSidebar';
 import HomeContent from '../../partials/patient/HomeContent';
+import { useAuth } from '../../context/AuthProvider/useAuth';
+import { useQuery } from 'react-query';
 
-function Settings(props) {
-
-  const [patient, setPatient] = useState({})
+function PatientHome(props) {
+  const auth = useAuth()
 
   const { id } = useParams()
 
-  const getPatient = async () => {
-    try {
-      const { data } = await Api.get(`/patient/${id}`)
+  const { data: patient } = useQuery(`patient/${id}`, async () => {
+    const response = await Api.get(`patient/${id}`)
 
-      setPatient(data.patient)
-    } catch (error) {
-      console.log("Erro ao pesquisar paciente.")
-    }
-  }
-
-  useEffect(() => {
-    try {
-      getPatient()
-    } catch (error) {
-      console.log("Erro ao carregar informações do paciente.")
-    }
-  }, [])
+    return response.data.patient
+  })
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen">
 
       {/* Sidebar */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
@@ -58,7 +47,7 @@ function Settings(props) {
                 <div className="mr-4">
                   <img className="w-10 h-10 rounded-full" src={Image} width="20" height="20" alt="User upload" />
                 </div>
-                <h1 className="text-1xl md:text-2xl text-gray-800 font-bold">{patient.name}</h1>
+                <h1 className="text-1xl md:text-2xl text-gray-800 font-bold">{patient && patient.name}</h1>
               </div>
 
             </div>
@@ -80,4 +69,4 @@ function Settings(props) {
   );
 }
 
-export default Settings;
+export default PatientHome;

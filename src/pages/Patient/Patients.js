@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../context/AuthProvider/useAuth';
@@ -8,11 +8,18 @@ import Header from '../../partials/Header';
 import PatientsTable from '../../partials/patient/PatientsTable';
 import ModalBasic from '../../components/ModalBasic';
 import { Api } from '../../services/api';
+import { useQuery } from 'react-query';
 
 function Patients() {
 
   const auth = useAuth()
   const navigate = useNavigate()
+
+  const { data: patientsList, isLoading } = useQuery(`/patient/?user_professional_id=${auth.id}`, async () => {
+    const response = await Api.get(`/patient/?user_professional_id=${auth.id}`)
+
+    return response.data.patients
+  })
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
@@ -22,34 +29,6 @@ function Patients() {
   const [gender, setGender] = useState("m")
   const [email, setEmail] = useState("")
   const [nullFields, setNullFields] = useState({ name: true, birthData: true })
-
-  const [patientsList, setPatientsList] = useState([]);
-
-  useEffect(() => {
-    try {
-      getPatients()
-    } catch (error) {
-      console.log({ error })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const getPatients = async () => {
-    try {
-      const { id } = auth
-
-      if (!id) {
-        console.log("id do profissional não foi encontrado.")
-        return
-      }
-
-      const patients = await Api.get(`/patient/?user_professional_id=${id}`)
-
-      setPatientsList(patients.data.patients);
-    } catch (error) {
-      console.log("Falha ao buscar pacientes.", error)
-    }
-  }
 
   const handleSave = async () => {
     try {
@@ -62,7 +41,7 @@ function Patients() {
 
       const { data } = await Api.post('/patient/new', patientData)
 
-      
+
       navigate(`/patients/edit/${data.patient.id}`)
     } catch (error) {
       console.log("Falha ao criar paciente.")
@@ -87,7 +66,6 @@ function Patients() {
 
   return (
     <div className="flex h-screen overflow-hidden">
-
       {/* Sidebar */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
@@ -120,9 +98,25 @@ function Patients() {
 
             </div>
 
-            {/* Table */}
-            <PatientsTable patients={patientsList} />
+            {patientsList && <PatientsTable patients={patientsList} />}
 
+            {isLoading && <div className="bg-white shadow-lg rounded-sm border border-gray-200 relative">
+              <header className="px-5 py-4">
+                <h2 className="font-semibold text-gray-800">Meus Pacientes</h2>
+              </header>
+              <div>
+                <div className="overflow-x-auto">
+                  <div className="flex items-center justify-center text-gray-500 text-lg text-center px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+                    <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#38BDF8" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="#38BDF8" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+
+                    Carregando
+                  </div>
+                </div>
+              </div>
+            </div>}
           </div>
         </main>
 

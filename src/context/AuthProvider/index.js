@@ -1,9 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { getUserLocalStorage, LoginRequest, RegisterRequest, setUserLocalStorage } from "./util";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+
+  const location = useLocation()
+
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -12,7 +16,15 @@ export const AuthProvider = ({ children }) => {
     if (user) {
       setUser(user)
     }
+
   }, [])
+
+  useEffect(() => {
+    const user = getUserLocalStorage()
+
+    setUser(user)
+
+  }, [location.pathname])
 
   async function authenticate(email, password) {
     try {
@@ -25,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 
       return true
     } catch (error) {
-      return false
+      throw error
     }
   }
 
