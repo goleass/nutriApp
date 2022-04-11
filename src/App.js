@@ -18,6 +18,7 @@ import PatientProfile from './pages/Patient/PatientProfile';
 import PatientHome from './pages/Patient/PatientHome';
 import Profile from './pages/Profile';
 import Anamnesis from './pages/Patient/Anamnesis';
+import EnergyExpenditure from './pages/Patient/EnergyExpenditure';
 
 import { AuthProvider } from './context/AuthProvider';
 import { ProtectedLayout } from './components/ProtectedLayout'
@@ -43,9 +44,13 @@ function App() {
 
           <Route path="/patients/edit/:id" element={<ProtectedLayout children={<PatientHome />} />} />
 
+          <Route path="/patients/edit/:id/gasto-energetico" element={<ProtectedLayout children={<EnergyExpenditure />} />} />
+          
           <Route path="/patients/edit/:id/anamnesis" element={<ProtectedLayout children={<Anamnesis />} />} />
 
           <Route path="/patients/edit/:id/anamnesis/:anamnesisId" element={<ProtectedLayout children={<Anamnesis />} />} />
+          
+          <Route path="/patients/edit/:id/gasto-energetico/:energyExpenditureId" element={<ProtectedLayout children={<EnergyExpenditure />} />} />
 
           <Route path="/patients/edit/:id/profile" element={<ProtectedLayout children={<PatientProfile />} />} />
 

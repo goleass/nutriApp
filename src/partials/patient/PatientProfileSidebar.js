@@ -58,15 +58,15 @@ function PatientProfileSidebar({ id }) {
                       </NavLink>
                     </div>
 
-                    {/* <div className="w-1/1 rounded overflow-hidden shadow-lg cursor-pointer border-t-4 hover:bg-green-50 border-green-300">
-                      <NavLink to={`/patients/edit/${id}/anamnesis`}>
+                    <div className="w-1/1 rounded overflow-hidden shadow-lg cursor-pointer border-t-4 hover:bg-green-50 border-green-300">
+                      <NavLink to={`/patients/edit/${id}/gasto-energetico`}>
                         <div className="px-6 py-4">
                           <div className="text-center font-bold text-base mb-2">Gasto energético</div>
                         </div>
                       </NavLink>
                     </div>
 
-                    <div className="w-1/1 rounded overflow-hidden shadow-lg cursor-pointer border-t-4 hover:bg-red-50 border-red-300">
+                    {/* <div className="w-1/1 rounded overflow-hidden shadow-lg cursor-pointer border-t-4 hover:bg-red-50 border-red-300">
                       <NavLink to={`/patients/edit/${id}/anamnesis`}>
                         <div className="px-6 py-4">
                           <div className="text-center font-bold text-base mb-2">Plano alimentar</div>

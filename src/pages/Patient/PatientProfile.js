@@ -3,14 +3,13 @@ import { useParams } from 'react-router-dom'
 
 import { Api } from '../../services/api';
 
-import Image from '../../images/avatar-01.jpg';
-
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 import PatientSidebar from '../../partials/patient/PatientProfileSidebar';
 import ProfileContent from '../../partials/patient/ProfileContent';
 import { useAuth } from '../../context/AuthProvider/useAuth';
 import { useQuery } from 'react-query';
+import { getInitialsName } from '../../utils/Utils';
 
 function PatientProfile(props) {
   const auth = useAuth()
@@ -45,7 +44,8 @@ function PatientProfile(props) {
               {/* Title */}
               <div className="flex items-center">
                 <div className="mr-4">
-                  <img className="w-10 h-10 rounded-full" src={Image} width="20" height="20" alt="User upload" />
+                <div className="flex items-center justify-center bg-blue-200 rounded-full w-12 h-12 text-lg font-semibold uppercase text-slate-500">{getInitialsName(patient.name)}</div>
+                  {/* <img className="w-10 h-10 rounded-full" src={Image} width="20" height="20" alt="User upload" /> */}
                 </div>
                 <h1 className="text-1xl md:text-2xl text-gray-800 font-bold">{patient.name}</h1>
               </div>
@@ -56,7 +56,7 @@ function PatientProfile(props) {
             <div className="bg-white shadow-lg rounded-sm mb-8">
               <div className="flex flex-col md:flex-row md:-mr-px">
                 <PatientSidebar id={id}/>
-                <ProfileContent />
+                <ProfileContent id={id} />
               </div>
             </div>
 

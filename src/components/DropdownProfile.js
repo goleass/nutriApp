@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Transition from '../utils/Transition';
+import { getInitialsName } from '../utils/Utils'
 
-import UserAvatar from '../images/avatar-01.jpg';
 import { useAuth } from '../context/AuthProvider/useAuth';
 
 function DropdownProfile({
@@ -50,7 +50,8 @@ function DropdownProfile({
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
-        <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" />
+        <div className="flex items-center justify-center bg-blue-200 rounded-full w-8 h-8 text-sm font-semibold uppercase">{auth.name && getInitialsName(auth.name)}</div>
+        {/* <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" /> */}
         <div className="flex items-center truncate">
           <span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">{auth.name && auth.name.split(" ")[0]}</span>
           <svg className="w-3 h-3 flex-shrink-0 ml-1 fill-current text-gray-400" viewBox="0 0 12 12">

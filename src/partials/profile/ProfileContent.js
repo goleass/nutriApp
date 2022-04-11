@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthProvider/useAuth'
 
 import Image from '../../images/avatar-01.jpg';
+import { getInitialsName } from '../../utils/Utils';
 
 function SettingsContent() {
 
@@ -20,14 +21,15 @@ function SettingsContent() {
           {/* <h2 className="text-xl text-gray-800 font-bold mb-5">Foto de Perfil</h2> */}
           <div className="flex flex-col items-center gap-2">
             <div className="">
-              <img className="w-120 h-120 rounded-full" src={Image} width="120" height="120" alt="User upload" />
+            <div className="flex items-center justify-center bg-blue-200 rounded-full w-28 h-28 text-lg font-semibold uppercase text-slate-500">{getInitialsName(name)}</div>
+              {/* <img className="w-120 h-120 rounded-full" src={Image} width="120" height="120" alt="User upload" /> */}
             </div>
             <div className="">
               <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Atualizar foto de perfil</button>
             </div>
           </div>
         </section>
-        {/* Business Profile */}
+
         <section>
           <h2 className="text-xl text-gray-800 font-bold mb-1">Meus dados</h2>
           {/* <div className="text-sm">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</div> */}
